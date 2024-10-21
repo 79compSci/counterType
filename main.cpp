@@ -1,68 +1,35 @@
+#include "counterType.h"
 #include <iostream>
-using namespace std;
-
-class counterType {
-private:
-    int counter;
-
-public:
-    // Constructor to initialize counter to 0
-    counterType() {
-        counter = 0;
-    }
-
-    // Function to set counter to a specified value
-    void setCounter(int value) {
-        if (value >= 0) {
-            counter = value;
-        } else {
-            cout << "Counter value cannot be negative." << endl;
-        }
-    }
-
-    // Function to initialize counter to 0
-    void initializeCounter() {
-        counter = 0;
-    }
-
-    // Function to retrieve the value of counter
-    int getCounter() const {
-        return counter;
-    }
-
-    // Function to increment counter by 1
-    void incrementCounter() {
-        counter++;
-    }
-
-    // Function to decrement counter by 1, ensuring it's nonnegative
-    void decrementCounter() {
-        if (counter > 0) {
-            counter--;
-        } else {
-            cout << "Counter value cannot be negative." << endl;
-        }
-    }
-};
 
 int main() {
-    counterType myCounter;
+    // Testing default constructor
+    counterType counter1;
+    std::cout << "Initial value of counter1 (default constructor): " << counter1.getCounter() << std::endl;
 
-    // Testing the counter
-    myCounter.setCounter(5);
-    cout << "Counter: " << myCounter.getCounter() << endl;
+    // Testing user-supplied parameter
+    counterType counter2;
+    counter2.setCounter(5);
+    std::cout << "Value of counter2 after setting to 5: " << counter2.getCounter() << std::endl;
 
-    myCounter.incrementCounter();
-    cout << "After increment: " << myCounter.getCounter() << endl;
+    // Testing increment operation
+    counter2.incrementCounter();
+    std::cout << "Value of counter2 after increment: " << counter2.getCounter() << std::endl;
 
-    myCounter.decrementCounter();
-    cout << "After decrement: " << myCounter.getCounter() << endl;
+    // Testing decrement operation
+    counter2.decrementCounter();
+    std::cout << "Value of counter2 after decrement: " << counter2.getCounter() << std::endl;
 
-    myCounter.decrementCounter();
-    myCounter.decrementCounter();
-    myCounter.decrementCounter();
-    myCounter.decrementCounter();
-    myCounter.decrementCounter(); // Should show message that counter can't be negative
+    // Testing reset operation
+    counter2.initializeCounter();
+    std::cout << "Value of counter2 after reset: " << counter2.getCounter() << std::endl;
+
+    // Testing decrement operation after reset
+    counter2.decrementCounter();
+    std::cout << "Value of counter2 after attempting to decrement when at 0: " << counter2.getCounter() << std::endl;
+
+    // Testing setting the counter to 10
+    counter2.setCounter(10);
+    std::cout << "Value of counter2 after setting to 10: " << counter2.getCounter() << std::endl;
 
     return 0;
 }
